@@ -1,0 +1,7 @@
+{
+    "temperature": 15.2,
+    "pressure": 1013,
+    "humidity": 78,
+    "weather_description": "clear sky",
+    "wind_speed": 3.6
+}
