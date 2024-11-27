@@ -1,0 +1,32 @@
+import requests
+
+API_KEY = "your_api_key_here"  # Replace with your API key
+BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
+
+def get_weather(city_name):
+    # Construct the URL with the city name and API key
+    url = f"{BASE_URL}?q={city_name}&appid={API_KEY}&units=metric"
+    
+    # Send the GET request
+    response = requests.get(url)
+    
+    # If the request is successful (status code 200)
+    if response.status_code == 200:
+        data = response.json()
+        
+        # Extracting relevant information from the API response
+        main = data['main']
+        weather = data['weather'][0]
+        wind = data['wind']
+        
+        # Prepare a dictionary with weather data
+        weather_info = {
+            "temperature": main['temp'],
+            "pressure": main['pressure'],
+            "humidity": main['humidity'],
+            "weather_description": weather['description'],
+            "wind_speed": wind['speed'],
+        }
+        return weather_info
+    else:
+        return None
